@@ -1,13 +1,40 @@
-function App() {
+// src/App.jsx
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
+import EditarUmbrales from './pages/EditarUmbrales'
+import Sensores from './pages/Sensores'
+import NotFound from './pages/NotFound'
+import BottomNav from './components/BottomNav'
+import Config from './pages/Config'
+import ControlRiego from './pages/ControlRiego'
+
+// Layout principal que usa useLocation (debe ir dentro del Router)
+function Layout({ children }) {
+  const location = useLocation()
+  const hideNav = location.pathname === '/editar-umbrales'
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-200 to-blue-300 flex flex-col items-center justify-center">
-      <h1 className="text-5xl font-bold text-gray-800 mb-4">✅ HydroLeaf + Tailwind</h1>
-      <p className="text-lg text-gray-700">¡Todo está funcionando perfecto!</p>
-      <button className="mt-6 px-6 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg shadow-md">
-        ¡Vamos con el Frontend!
-      </button>
+    <div className="bg-background min-h-screen flex justify-center">
+      <div className="w-full max-w-md">
+        {children}
+        {!hideNav && <BottomNav />}
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default function App() {
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/editar-umbrales" element={<EditarUmbrales />} />
+          <Route path="/sensores" element={<Sensores />} />
+          <Route path="/config" element={<Config />} />
+          <Route path="/control-riego" element={<ControlRiego />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
+    </Router>
+  )
+}

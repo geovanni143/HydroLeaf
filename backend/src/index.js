@@ -1,32 +1,20 @@
-const express = require('express');
-const cors = require('cors');
-const mqtt = require('mqtt');
-const mongoose = require('mongoose');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import './mqttClient.js'; // inicia conexión MQTT y WebSocket
+import irrigationRoutes from './routes/irrigation.routes.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
-
-// Middlewares
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // 👈 necesario para leer JSON del body
 
-// MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('🔌 Conectado a MongoDB'))
-  .catch(err => console.error('❌ Error al conectar a MongoDB:', err));
-
-// MQTT client (solo como base)
-const mqttClient = mqtt.connect(process.env.MQTT_BROKER);
-mqttClient.on('connect', () => {
-  console.log('📡 Conectado a MQTT Broker');
-});
-
-// Ruta base
+// Ruta raíz
 app.get('/', (req, res) => {
-  res.send('HydroLeaf Backend funcionando 🚀');
+  res.send('HydroLeaf Backend Activo');
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Servidor backend corriendo en http://localhost:${PORT}`);
+// 👇 monta rutas de riego
+app.use('/api/irrigation', irrigationRoutes);
+
+app.listen(3000, () => {
+  console.log('Servidor backend escuchando en puerto 3000');
 });
