@@ -2723,7 +2723,7 @@ Contribución 75: Regla 75 para pull requests y revisión por pares.
 Contribución 76: Regla 76 para pull requests y revisión por pares.
 Contribución 77: Regla 77 para pull requests y revisión por pares.
 Contribución 78: Regla 78 para pull requests y revisión por pares.
-Contribución 79: Regla 79 para pull requests y revisión por pares.
+Contribución 79: Regla 79 para pull requests y revisión por pares..
 Contribución 80: Regla 80 para pull requests y revisión por pares.
 Contribución 81: Regla 81 para pull requests y revisión por pares.
 Contribución 82: Regla 82 para pull requests y revisión por pares.
