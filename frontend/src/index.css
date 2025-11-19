@@ -1,9 +1,56 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Poppins:wght@400;700&display=swap');
+/* src/index.css */
+
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Fondo global + evitar scroll horizontal */
 body {
-  @apply bg-background;
+  @apply bg-background font-inter;
+  overflow-x: hidden;        /* <<< IMPORTANTE */
+}
+
+/* ===========================
+   ESCALA PARA PANTALLAS PEQUEÑAS
+   ============================ */
+
+.mobile-scale-main {
+  transform-origin: top center;
+}
+
+.mobile-scale-nav {
+  transform-origin: bottom center;
+}
+
+/* ≈ 90% */
+@media (max-width: 420px) and (max-height: 780px) {
+  .mobile-scale-main {
+    transform: scale(0.9);
+  }
+  .mobile-scale-nav {
+    transform: scale(0.9);
+  }
+}
+
+/* ≈ 85% */
+@media (max-width: 420px) and (max-height: 700px) {
+  .mobile-scale-main {
+    transform: scale(0.85);
+  }
+  .mobile-scale-nav {
+    transform: scale(0.85);
+  }
+}
+
+/* ≈ 80% */
+@media (max-width: 420px) and (max-height: 640px) {
+  .mobile-scale-main {
+    transform: scale(0.8);
+  }
+  .mobile-scale-nav {
+    transform: scale(0.8);
+  }
 }
